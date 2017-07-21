@@ -52,6 +52,7 @@
     "@angular/platform-browser-dynamic": "4.2.2",
     "@angular/router": "4.2.2",
     "@ng-bootstrap/ng-bootstrap": "1.0.0-alpha.26",
+    "@types/three": "^0.84.18",
     "Leaflet.vector-markers": "0.0.6",
     "angular2-uuid": "1.1.0",
     "bootstrap": "^4.0.0-alpha.6",
@@ -74,6 +75,7 @@
     "roboto-fontface": "0.6.0",
     "rxjs": "5.0.1",
     "systemjs": "0.19.31",
+    "three": "^0.86.0",
     "zone.js": "0.8.11"
   },
   "devDependencies": {

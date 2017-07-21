@@ -65,7 +65,8 @@ config.map = {
     'moment': 'node_modules/moment/min/moment-with-locales.js',
     'ip': 'node_modules/ip/lib/ip.js',
     'os': '@node/os',
-    'buffer': '@node/buffer'
+    'buffer': '@node/buffer',
+    'three': 'node_modules/three/build/three.js'
 };
 
 config.meta=  {

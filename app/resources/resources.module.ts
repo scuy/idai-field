@@ -6,6 +6,8 @@ import {ResourcesComponent} from './resources.component';
 import {GeometryViewComponent} from './geometry-view.component';
 import {EditableMapComponent} from './map/editable-map.component';
 import {MapWrapperComponent} from './map-wrapper.component';
+import {ThreedWrapperComponent} from './threed/threed-wrapper.component';
+import {ThreedComponent} from './threed/threed.component';
 import {ListComponent} from './list/list.component';
 import {RowComponent} from './list/row.component';
 import {PlusButtonComponent} from './plus-button.component';
@@ -32,6 +34,8 @@ import {DoceditModule} from '../docedit/docedit.module';
         EditableMapComponent,
         MapWrapperComponent,
         ListComponent,
+        ThreedWrapperComponent,
+        ThreedComponent,
         RowComponent,
         PlusButtonComponent,
         ProjectsComponent

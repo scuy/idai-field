@@ -38,8 +38,12 @@
 
     <div class="col-md-3" align="right">
         <div *ngIf="ready" class="btn-group">
-            <button id="map-mode-button" (click)="setMode('map')" class="btn btn-primary m-0"
-                    [disabled]="mode == 'map'">
+            <button id="map-mode-button" (click)="setMode('threed')"
+                    class="btn btn-primary m-0" [disabled]="mode == '3d'">
+                3D
+            </button>
+            <button id="map-mode-button" (click)="setMode('map')"
+                    class="btn btn-primary m-0" [disabled]="mode == 'map'">
                 Karte
             </button>
             <button id="list-mode-button" (click)="setMode('list')"
@@ -70,6 +74,7 @@
         <map-wrapper *ngIf="mode == 'map'" [selectedDocument]="selectedDocument"
                      [editMode]="editGeometry"></map-wrapper>
         <list *ngIf="mode == 'list'" (onDocumentCreation)="setScrollTarget($event)"></list>
+        <threed-wrapper *ngIf="mode == 'threed'" [selectedDocument]="selectedDocument"></threed-wrapper>
     </div>
 
 </div>
