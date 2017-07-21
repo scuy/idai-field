@@ -26,7 +26,13 @@ export class ThreedComponent implements AfterViewInit {
 
       let containerElem = this.container.nativeElement;
 
-      this.scene = new THREE.Scene();
+      this.scene = new THREE.Scene()
+      this.scene.background = new THREE.Color(0xdddddd);
+      this.scene.add( new THREE.AmbientLight( 0xffffff, 0.3 ) );
+			var light = new THREE.DirectionalLight( 0xffffff, 0.35 );
+			light.position.set( 1, 1, 1 ).normalize();
+			this.scene.add( light );
+
 			this.camera = new THREE.PerspectiveCamera( 75,
         containerElem.clientWidth/containerElem.clientHeight, 0.1, 1000 );
 
@@ -35,7 +41,7 @@ export class ThreedComponent implements AfterViewInit {
       containerElem.appendChild(this.renderer.domElement);
 
 			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			var material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
 			this.cube = new THREE.Mesh( geometry, material );
 			this.scene.add(this.cube);
 
