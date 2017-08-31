@@ -18,11 +18,9 @@ export class NativeJsonlParser extends AbstractParser {
     }
 
     private static makeDoc(line) {
-        let resource = JSON.parse(line);
-        if (!resource.relations) resource.relations = {};
-        return {
-            resource: resource
-        };
+        let parsed = JSON.parse(line);
+        if (!parsed.resource.relations) parsed.resource.relations = {};
+        return parsed._attachments ? { resource: parsed.resource, _attachments: parsed._attachments } : { resource: parsed.resource }
     }
 
     private static parseContent(content,observer,makeDocFun) {

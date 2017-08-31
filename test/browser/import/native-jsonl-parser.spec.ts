@@ -14,11 +14,11 @@ export function main() {
             }
         );
 
-       it('should create objects from file content', (done) => {
+       fit('should create objects from file content', (done) => {
 
-            let fileContent  = '{ "id": "id1", "type": "Find", "identifier" : "ob1", "title": "Obi-Wan Kenobi"}\n'
-                + '{ "id": "id2", "type": "Find", "identifier" : "ob2", "title": "Obi-Two Kenobi"}\n'
-                + '{ "id": "id3", "type": "Find", "identifier" : "ob3", "title": "Obi-Three Kenobi"}';
+            let fileContent  = '{"resource":{ "id": "id1", "type": "Find", "identifier" : "ob1", "title": "Obi-Wan Kenobi"}}\n'
+                + '{"resource":{ "id": "id2", "type": "Find", "identifier" : "ob2", "title": "Obi-Two Kenobi"}}\n'
+                + '{"resource":{ "id": "id3", "type": "Find", "identifier" : "ob3", "title": "Obi-Three Kenobi"}}';
 
             let parser = new NativeJsonlParser();
             let objects = [];
@@ -38,11 +38,11 @@ export function main() {
 
         });
 
-        it('should abort on syntax errors in file content', (done) => {
+        fit('should abort on syntax errors in file content', (done) => {
 
-            let fileContent = '{ "id": "id1", "type": "Find", "identifier" : "ob1", "title": "Obi-Wan Kenobi"}\n'
-                + '{ "id": "id2", "type": "Find", "identifier" : "ob2", "title": "Obi-Two Kenobi"\n'
-                + '{ "id": "id3", "type": "Find", "identifier" : "ob3", "title": "Obi-Three Kenobi"}';
+            let fileContent = '{"resource":{ "id": "id1", "type": "Find", "identifier" : "ob1", "title": "Obi-Wan Kenobi"}}\n'
+                + '{"resource":{ "id": "id2", "type": "Find", "identifier" : "ob2", "title": "Obi-Two Kenobi"}\n'
+                + '{"resource":{ "id": "id3", "type": "Find", "identifier" : "ob3", "title": "Obi-Three Kenobi"}}';
 
             let parser = new NativeJsonlParser();
             let objects = [];

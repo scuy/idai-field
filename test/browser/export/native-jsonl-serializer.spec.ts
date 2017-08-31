@@ -62,9 +62,9 @@ export function main() {
         ];
 
         it('should serialize resources to the native jsonl format', (done) => {
-            const expectedResult = '{"id":"id1","type":"Find","identifier":"test1","shortDescription":"Test 1",' +
-                '"relations":{}}\n{"id":"id2","type":"Photo","identifier":"test2","shortDescription":"Test 2",' +
-                '"relations":{},"thumb":"data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="}\n';
+            const expectedResult = '{"resource":{"id":"id1","type":"Find","identifier":"test1","shortDescription":"Test 1",' +
+                '"relations":{}}}\n{"resource":{"id":"id2","type":"Photo","identifier":"test2","shortDescription":"Test 2",' +
+                '"relations":{}},"_attachments":{"thumb":{"data":"R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=","content_type":"image/gif"}}}\n';
 
             const serializer: NativeJsonlSerializer = new NativeJsonlSerializer(mockPouchdbManager, mockImageTypeUtility);
             serializer.serialize(testDocuments).then( serializer_result => {

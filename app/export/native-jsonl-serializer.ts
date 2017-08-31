@@ -27,7 +27,7 @@ export class NativeJsonlSerializer implements Serializer {
 		        	if (projectImageTypeNames.indexOf(document.resource.type) != -1) {
 		      			promises.push(this.loadImageAndSerializeResource(document.resource));
 		        	} else {
-		  				this.result += JSON.stringify(document.resource);
+		  				this.result += JSON.stringify({ "resource": document.resource});
 		      			this.result += '\n';
 		        	}    
 		       	}
@@ -53,8 +53,7 @@ export class NativeJsonlSerializer implements Serializer {
     private loadImageAndSerializeResource(resource): Promise <any> {
     	return new Promise<any>((resolve) => {
 	    	this.db.get(resource.id, {"attachments": true}).then(data => {
-				data.resource["thumb"] = "data:" + data._attachments.thumb.content_type + ";base64," + data._attachments.thumb.data;
-				resolve(JSON.stringify(data.resource));
+				resolve(JSON.stringify({ "resource": data.resource, "_attachments": data._attachments}));
 			});
 	    });
     }
