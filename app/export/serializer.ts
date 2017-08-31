@@ -5,5 +5,5 @@ import {Document} from 'idai-components-2/core';
  */
 export interface Serializer {
 
-    serialize(documents: Array<Document>): string
+    serialize(documents: Array<Document>): Promise <string>
 }

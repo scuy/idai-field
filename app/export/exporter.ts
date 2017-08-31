@@ -20,13 +20,15 @@ export class Exporter {
 
             this.datastore.find({}).then(
                 documents => {
-                    fs.writeFile(filePath, serializer.serialize(documents), (err) => {
-                        if (err) {
-                            reject([M.EXPORT_WRITE_ERROR, filePath]);
-                        } else {
-                            resolve();
-                        }
-                    });
+                    serializer.serialize(documents).then( serializer_result => {
+                        fs.writeFile(filePath, serializer_result, (err) => {
+                            if (err) {
+                                reject([M.EXPORT_WRITE_ERROR, filePath]);
+                            } else {
+                                resolve();
+                            }
+                        });
+                    })
                 }, () => reject([M.ALL_FIND_ERROR])
             );
         });

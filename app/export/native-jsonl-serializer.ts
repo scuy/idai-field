@@ -1,20 +1,61 @@
 import {Serializer} from './serializer';
 import {Document} from 'idai-components-2/core';
 
+import {PouchdbManager} from '../datastore/pouchdb-manager';
+import {ImageTypeUtility} from '../util/image-type-utility';
+
 /**
  * @author Thomas Kleinke
  */
 export class NativeJsonlSerializer implements Serializer {
 
-    public serialize(documents: Array<Document>): string {
+    private db = undefined;
+    private result : string = '';
 
-        let result: string = '';
+    constructor(
+    	private pouchdbManager: PouchdbManager,
+    	private imageTypeUtility: ImageTypeUtility,
+    ) {
+    	this.db = pouchdbManager.getDb();
+    }
 
-        for (let document of documents) {
-            result += JSON.stringify(document.resource);
-            result += '\n';
-        }
+    public serialize(documents: Array<Document>): Promise <string> {
+    	return new Promise<any>((resolve) => {
+	        var promises = [];
+	        this.imageTypeUtility.getProjectImageTypeNames().then( projectImageTypeNames => {
+		        for (let document of documents) {
+		        	if (projectImageTypeNames.indexOf(document.resource.type) != -1) {
+		      			promises.push(this.loadImageAndSerializeResource(document.resource));
+		        	} else {
+		  				this.result += JSON.stringify(document.resource);
+		      			this.result += '\n';
+		        	}    
+		       	}
+				resolve(this.addSerializedImagesToResult(promises));
+		    });
+	    });
+    }
 
-        return result;
+    private addSerializedImagesToResult(loadPromises) {
+    	return new Promise<any>((resolve) => {
+	    	Promise.all(loadPromises).then(
+	    		jsonStrings => {
+	    			jsonStrings.forEach(str => {
+		    			this.result += str
+						this.result += '\n';
+					});
+					resolve(this.result);
+	    		}
+	    	);
+	    })
+    }
+
+    private loadImageAndSerializeResource(resource): Promise <any> {
+    	return new Promise<any>((resolve) => {
+	    	this.db.get(resource.id, {"attachments": true}).then(data => {
+				data.resource["thumb"] = data.resource.thumb;
+				resolve(JSON.stringify(data.resource));
+			});
+	    });
     }
 }

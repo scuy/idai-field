@@ -4,6 +4,9 @@ import {Exporter} from './exporter';
 import {Serializer} from './serializer';
 import {NativeJsonlSerializer} from './native-jsonl-serializer';
 import {M} from '../m';
+import {PouchdbManager} from '../datastore/pouchdb-manager';
+import {ImageTypeUtility} from '../util/image-type-utility';
+
 
 const {dialog} = require('electron').remote;
 
@@ -22,6 +25,8 @@ export class ExportComponent {
 
     constructor(
         private messages: Messages,
+        private pouchdbManager: PouchdbManager,
+        private imageTypeUtility: ImageTypeUtility,
         private exporter: Exporter
     ) {}
 
@@ -61,7 +66,7 @@ export class ExportComponent {
 
         switch (this.format) {
             case 'native':
-                return new NativeJsonlSerializer();
+                return new NativeJsonlSerializer(this.pouchdbManager, this.imageTypeUtility);
         }
     }
 
