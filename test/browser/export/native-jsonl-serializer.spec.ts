@@ -19,7 +19,17 @@ export function main() {
             mockPouchdbManager.getDb.and.callFake(function() { return mockDB });
             mockDB.get.and.callFake(
                 function(a,b) { 
-                    return Promise.resolve({"resource": {"id":"id2","type":"Photo","identifier":"test2","shortDescription":"Test 2","relations":{}, "thumb": "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" } })
+                    return Promise.resolve({
+                        "resource": 
+                            {"id":"id2","type":"Photo","identifier":"test2","shortDescription":"Test 2","relations":{}
+                        },
+                        "_attachments": { 
+                            "thumb":  { 
+                                "data": "R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=",
+                                "content_type": "image/gif"
+                            } 
+                        } 
+                    })
                 }
             )
             mockImageTypeUtility.getProjectImageTypeNames.and.callFake(function() { return Promise.resolve(["Photo"]); });
@@ -51,7 +61,7 @@ export function main() {
             }
         ];
 
-        fit('should serialize resources to the native jsonl format', (done) => {
+        it('should serialize resources to the native jsonl format', (done) => {
             const expectedResult = '{"id":"id1","type":"Find","identifier":"test1","shortDescription":"Test 1",' +
                 '"relations":{}}\n{"id":"id2","type":"Photo","identifier":"test2","shortDescription":"Test 2",' +
                 '"relations":{},"thumb":"data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="}\n';
