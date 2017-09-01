@@ -14,7 +14,7 @@ export function main() {
             }
         );
 
-       fit('should create objects from file content', (done) => {
+       it('should create objects from file content', (done) => {
 
             let fileContent  = '{"resource":{ "id": "id1", "type": "Find", "identifier" : "ob1", "title": "Obi-Wan Kenobi"}}\n'
                 + '{"resource":{ "id": "id2", "type": "Find", "identifier" : "ob2", "title": "Obi-Two Kenobi"}}\n'
@@ -38,7 +38,7 @@ export function main() {
 
         });
 
-        fit('should abort on syntax errors in file content', (done) => {
+        it('should abort on syntax errors in file content', (done) => {
 
             let fileContent = '{"resource":{ "id": "id1", "type": "Find", "identifier" : "ob1", "title": "Obi-Wan Kenobi"}}\n'
                 + '{"resource":{ "id": "id2", "type": "Find", "identifier" : "ob2", "title": "Obi-Two Kenobi"}\n'
