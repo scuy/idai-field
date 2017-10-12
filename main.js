@@ -22,14 +22,23 @@ var configSourcePath = undefined;
 if (process.argv && process.argv.length > 2) {
     configSourcePath = process.argv[2];
 }
+if (configSourcePath) { // is environment 'development' (npm start) or 'test' (npm run e2e)
+    global.configurationPath = 'config/Configuration.json';
+}
 
-if (!configSourcePath) { // is environment 'production' or 'development'
+
+if (!configSourcePath || // is environment 'production' (packaged app)
+    configSourcePath.indexOf('dev') !== -1) { // is environment 'development' (npm start)
 
     global.appDataPath = electron.app.getPath('appData') + '/' + electron.app.getName();
     copyConfigFile(global.appDataPath + '/config.json', global.appDataPath);
     global.configPath = global.appDataPath + '/config.json';
 
-} else { // is environment 'test'
+    if (!configSourcePath) { // is environment 'production' (packaged app)
+        global.configurationPath = '../config/Configuration.json'
+    }
+
+} else { // is environment 'test' (npm run e2e)
 
     global.configPath = configSourcePath;
     global.appDataPath = 'test/test-temp';
@@ -37,7 +46,7 @@ if (!configSourcePath) { // is environment 'production' or 'development'
 
 console.log('Using config file: ' + global.configPath);
 global.config = JSON.parse(fs.readFileSync(global.configPath, 'utf-8'));
-global.configurationPath = 'config/Configuration.json';
+
 
 // -- CONFIGURATION
 
