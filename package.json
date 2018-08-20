@@ -22,6 +22,7 @@
   },
   "build": {
     "appId": "org.dainst.idai-field-client",
+    "productName": "iDAI.field",
     "directories": {
       "output": "release"
     },
