@@ -1,5 +1,5 @@
-import {Query} from 'idai-components-2/core';
-import {IdaiFieldDocument} from 'idai-components-2/field';
+import {Query} from 'idai-components-2';
+import {IdaiFieldDocument} from 'idai-components-2';
 import {CachedReadDatastore, IdaiFieldFindResult} from '../core/cached-read-datastore';
 
 

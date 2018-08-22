@@ -2,11 +2,11 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
-import {IdaiDocumentsModule} from 'idai-components-2/core';
+import {IdaiDocumentsModule} from 'idai-components-2';
 import {DoceditComponent} from './docedit.component';
 import {RouterModule} from '@angular/router';
-import {IdaiWidgetsModule} from 'idai-components-2/widgets';
-import {IdaiMessagesModule} from 'idai-components-2/core';
+import {IdaiWidgetsModule} from 'idai-components-2';
+import {IdaiMessagesModule} from 'idai-components-2';
 import {WidgetsModule} from '../../widgets/widgets.module';
 import {DoceditImageTabComponent} from './tabs/docedit-image-tab.component';
 import {DoceditConflictsTabComponent} from './tabs/docedit-conflicts-tab.component';
@@ -36,12 +36,11 @@ import {NgbDateDEParserFormatter} from './core/forms/date-formatter.component';
 import {BooleanComponent} from './core/forms/boolean.component';
 import {EditFormFieldComponent} from './core/edit-form-field.component';
 import {DropdownRangeComponent} from './core/forms/dropdown-range.component';
-import {DocumentEditChangeMonitor} from './core/document-edit-change-monitor';
+
 
 @NgModule({
     providers: [
         DocumentHolder,
-        DocumentEditChangeMonitor,
         { provide: NgbDateParserFormatter, useClass: NgbDateDEParserFormatter }
     ],
     imports: [

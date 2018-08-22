@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Resource} from 'idai-components-2/core';
-import {DocumentEditChangeMonitor} from '../document-edit-change-monitor';
+import {Resource} from 'idai-components-2';
 
 
 @Component({
@@ -18,19 +17,14 @@ export class RadioComponent {
     @Input() field: any;
     
 
-    constructor(private documentEditChangeMonitor: DocumentEditChangeMonitor) {}
-
-
     public setValue(value: any) {
         
         this.resource[this.field.name] = value;
-        this.documentEditChangeMonitor.setChanged();
     }
 
 
     public resetValue() {
         
         delete this.resource[this.field.name];
-        this.documentEditChangeMonitor.setChanged();
     }
 }

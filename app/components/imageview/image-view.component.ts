@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Messages} from 'idai-components-2/core';
-import {IdaiFieldDocument} from 'idai-components-2/field';
+import {Messages} from 'idai-components-2';
+import {IdaiFieldDocument} from 'idai-components-2';
 import {Imagestore} from '../../core/imagestore/imagestore';
 import {DoceditComponent} from '../docedit/docedit.component';
 import {BlobMaker} from '../../core/imagestore/blob-maker';
@@ -12,7 +12,6 @@ import {M} from '../../m';
 import {RoutingService} from '../routing-service';
 import {IdaiFieldImageDocumentReadDatastore} from '../../core/datastore/field/idai-field-image-document-read-datastore';
 import {isEmpty} from 'tsfun';
-import {DocumentEditChangeMonitor} from '../docedit/core/document-edit-change-monitor';
 
 
 @Component({
@@ -42,7 +41,6 @@ export class ImageViewComponent implements OnInit {
         private messages: Messages,
         private router: Router,
         private modalService: NgbModal,
-        private documentEditChangeMonitor: DocumentEditChangeMonitor,
         private doceditActiveTabService: DoceditActiveTabService,
         private routingService: RoutingService
     ) {
@@ -80,8 +78,9 @@ export class ImageViewComponent implements OnInit {
             this.setNextDocumentViewActiveTab();
         } catch (closeReason) {
 
-            this.documentEditChangeMonitor.reset();
-            if (closeReason == 'deleted') this.deselect();
+            // this.documentEditChangeMonitor.reset();
+            // TODO reset document
+            if (closeReason === 'deleted') this.deselect();
         }
     }
 

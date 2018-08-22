@@ -2,7 +2,7 @@
   "name": "idai-field-client",
   "description": "iDAI.field 2 Client",
   "main": "main.js",
-  "version": "2.4.18",
+  "version": "2.5.1",
   "license": "Apache-2.0",
   "author": "German Archaeological Institute",
   "scripts": {
@@ -67,7 +67,7 @@
     "es6-shim": "0.35.0",
     "express": "4.15.0",
     "express-pouchdb-dainst": "1000.0.3",
-    "idai-components-2": "1.19.16",
+    "idai-components-2": "1.23.4",
     "ip": "1.1.5",
     "leaflet": "1.2.0",
     "leaflet-imageoverlay-rotated": "0.1.1",
